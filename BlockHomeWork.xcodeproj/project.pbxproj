@@ -14,6 +14,7 @@
 		84FE26811A0E3477003597CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FE26801A0E3477003597CB /* Images.xcassets */; };
 		84FE26841A0E3477003597CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FE26821A0E3477003597CB /* LaunchScreen.xib */; };
 		84FE26901A0E3477003597CB /* BlockHomeWorkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE268F1A0E3477003597CB /* BlockHomeWorkTests.m */; };
+		84FE269B1A0E373C003597CB /* RRStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE269A1A0E373C003597CB /* RRStudent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		84FE26891A0E3477003597CB /* BlockHomeWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockHomeWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FE268E1A0E3477003597CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84FE268F1A0E3477003597CB /* BlockHomeWorkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockHomeWorkTests.m; sourceTree = "<group>"; };
+		84FE26991A0E373C003597CB /* RRStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRStudent.h; sourceTree = "<group>"; };
+		84FE269A1A0E373C003597CB /* RRStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRStudent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 		84FE26721A0E3477003597CB /* BlockHomeWork */ = {
 			isa = PBXGroup;
 			children = (
+				84FE26991A0E373C003597CB /* RRStudent.h */,
+				84FE269A1A0E373C003597CB /* RRStudent.m */,
 				84FE26771A0E3477003597CB /* AppDelegate.h */,
 				84FE26781A0E3477003597CB /* AppDelegate.m */,
 				84FE267A1A0E3477003597CB /* ViewController.h */,
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FE267C1A0E3477003597CB /* ViewController.m in Sources */,
+				84FE269B1A0E373C003597CB /* RRStudent.m in Sources */,
 				84FE26791A0E3477003597CB /* AppDelegate.m in Sources */,
 				84FE26761A0E3477003597CB /* main.m in Sources */,
 			);

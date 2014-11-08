@@ -7,39 +7,117 @@
 //
 
 #import "AppDelegate.h"
+#import "RRStudent.h"
+
+typedef void(^VoidBlockVoid)(void);
+typedef void(^VoidBlockString)(NSString*);
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    void (^studBlock)(RRStudent*)= ^(RRStudent* stud){
+        if (stud.temperature>=36.9f && stud.temperature<37.7f) {
+            if (stud.sneezing || stud.cough) {
+                if ([stud medicalCertificate]) {
+                    [stud takePill];
+                }else{
+                    NSLog(@"%@ %@ Sorry, you do not have health insurance. ",stud.name, stud.lastName);
+                }
+            }
+            if (stud.stomachPain){
+                [stud goGastroenterologist];
+            }
+            if (!stud.stomachPain && !stud.sneezing && !stud.cough){
+                NSLog(@"%@ %@ Don't worry it ORVI - it will soon pass ",stud.name, stud.lastName);
+            }
+        }else if (stud.temperature>=37.7) {
+            if (stud.sneezing || stud.cough) {
+                if ([stud medicalCertificate]) {
+                    [stud makeShot];
+                }else{
+                    NSLog(@"%@ %@ Sorry, you do not have health insurance.",stud.name, stud.lastName);
+                }
+            }
+            if (stud.stomachPain){
+                NSLog(@"%@ %@ We'll send you in the ambulance to the gastroenterologist. ",stud.name, stud.lastName);
+            }else{
+                NSLog(@"%@ %@ I don't know what's wrong with you. I'll send you in the ambulance to the hospital. ",stud.name, stud.lastName);
+            }
+        } else {
+            NSLog(@"%@ %@ go home! You are healthy ",stud.name, stud.lastName);
+        }
+        NSLog(@"-+-+-+-+-+-");
+    };
+#pragma mark - Shcolar
+    // 1:
+    VoidBlockVoid testBlock = ^{
+        NSLog(@"Ученик 1");
+    };
+    testBlock();
+    
+    // 2:
+    VoidBlockString testBlockString = ^(NSString* str){
+        NSLog(@"Ученик 2: - %@",str);
+    };
+    testBlockString(@"TestStringBlock");
+    
+    // 4:
+    VoidBlockString testBlockString2 = ^(NSString* str){
+        NSLog(@"Ученик 3: - %@",str);
+    };
+    [self testMetodWithBlock:testBlockString2];
+    
+    
+#pragma mark - Student
+    NSLog(@"\n---Блок Student---\n");
+    
+    // 5 - 6:
+    RRStudent* student1 = [[RRStudent alloc] initWithName:@"Nastya" lastName:@"Bon"  feelsBlock:studBlock];
+    RRStudent* student2 = [[RRStudent alloc] initWithName:@"Dima" lastName:@"Petrov" feelsBlock:studBlock];
+    RRStudent* student3 = [[RRStudent alloc] initWithName:@"Ivan" lastName:@"Petrov" feelsBlock:studBlock];
+    RRStudent* student4 = [[RRStudent alloc] initWithName:@"Alex" lastName:@"Koval"  feelsBlock:studBlock];
+    RRStudent* student5 = [[RRStudent alloc] initWithName:@"Roman" lastName:@"Bon"  feelsBlock:studBlock];
+    RRStudent* student6 = [[RRStudent alloc] initWithName:@"Vera" lastName:@"Ivanova"  feelsBlock:studBlock];
+    RRStudent* student7 = [[RRStudent alloc] initWithName:@"Inna" lastName:@"Petrova"  feelsBlock:studBlock];
+    RRStudent* student8 = [[RRStudent alloc] initWithName:@"Yana" lastName:@"Ivanova"  feelsBlock:studBlock];
+    RRStudent* student9 = [[RRStudent alloc] initWithName:@"Dmitriy" lastName:@"Shatc"  feelsBlock:studBlock];
+    RRStudent* student10 = [[RRStudent alloc] initWithName:@"Ivan" lastName:@"Burov"  feelsBlock:studBlock];
+    
+    // 7: Помещаем студентов  в массив
+    NSArray* arrayOfStudent = @[student1,student2,student3,student4,student5,student6,student7,student8,student9,student10];
+    
+    // 8: Сортировка массива по фамилиям - потом по именам
+    NSArray* sortArray = [arrayOfStudent sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        if (![[obj1 lastName] isEqualToString:[obj2 lastName]]) {
+            return [[obj1 lastName] compare:[obj2 lastName]];
+        } else {
+            return [[obj1 name] compare:[obj2 name]];
+        }
+    }];
+    
+    for (RRStudent* stud in sortArray) {
+        NSLog(@"%@  %@",stud.lastName,stud.name);
+    }
+    
+#pragma mark - Master
+    NSLog(@"\n---Блок Master---\n");
+    
+    for (RRStudent* stud in sortArray) {
+        NSLog(@"%@  %@",stud.lastName,stud.name);
+        [stud feelsBad:studBlock];
+    }
+ 
+#pragma mark - SuperMan
+    NSLog(@"\n---Блок SuperMan---\n");
+    
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+-(void) testMetodWithBlock:(VoidBlockString) testBlock{
+    testBlock(@"testMetodWithBlock");
 }
 
 @end
