@@ -7,7 +7,6 @@
 //
 
 #import "RRStudent.h"
-#import "AppDelegate.h"
 
 @implementation RRStudent
 
@@ -23,7 +22,7 @@
 }
 
 - (instancetype)init{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Use initWithName:(NSString*)name lastName:(NSString*)lastName feelsBlock:(void(^)(RRStudent*)) patient" userInfo:nil];
+    @throw [NSException exceptionWithName:@"init don't use" reason:@"Use initWithName:(NSString*)name lastName:(NSString*)lastName feelsBlock:(void(^)(RRStudent*)) patient" userInfo:nil];
     return nil;
 }
 

@@ -85,7 +85,9 @@ typedef void(^VoidBlockString)(NSString*);
     RRStudent* student8 = [[RRStudent alloc] initWithName:@"Yana" lastName:@"Ivanova"  feelsBlock:studBlock];
     RRStudent* student9 = [[RRStudent alloc] initWithName:@"Dmitriy" lastName:@"Shatc"  feelsBlock:studBlock];
     RRStudent* student10 = [[RRStudent alloc] initWithName:@"Ivan" lastName:@"Burov"  feelsBlock:studBlock];
-    
+    RRStudent* studi = [RRStudent new];
+    studi.name = @"Mndfsdfk";
+    NSLog(@"%@",studi.name);
     // 7: Помещаем студентов  в массив
     NSArray* arrayOfStudent = @[student1,student2,student3,student4,student5,student6,student7,student8,student9,student10];
     
