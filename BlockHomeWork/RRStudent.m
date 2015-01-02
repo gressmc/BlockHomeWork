@@ -26,7 +26,9 @@
     return nil;
 }
 
-
+-(void)dealloc{
+    NSLog(@"%@ dealloceted",self.name);
+}
 
 // Болезненые методы
 
